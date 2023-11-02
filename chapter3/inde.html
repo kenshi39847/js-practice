@@ -1,0 +1,40 @@
+defer属性
+<script src="js/script.js" defer></script>
+Webページの読み込みを速くする。Webページを表示するとき、ブラウザはHTMLのコードを上から下へ順番に解析していく。
+しかし、defer属性がある場合は、1つの処理の終了を待たずに次の処理（非同期処理）を行う。
+つまり、HTMLの解析が中断されることなく、JavaScriptファイルの読み込みが同時に行われる。
+
+querySelector()メソッド
+document.querySelector('#select')
+HTMLの中から任意のIDがついた要素を取得する。
+上記例では、document（オブジェクト）から指定した#select（パラメター）を持つ要素を取得するという意味になる。
+ここで、「#select」はIDを指定する場合の書き方であり、ID名を指定する場合は「#ID名」、クラス名を指定する場合は「.クラス名」となる。
+
+JavaScriptでのコメントアウトは「//」と書くと、それ以降の行末までコメントアウトされる。
+// 1行コメントアウト
+alert('はじめてのJavaScript！');
+また、複数行のコメント入れたい場合は、「/*」からはじめ「*/」で終了する。
+/*
+複数行のコメントアウト
+この範囲は動作に影響しません
+*/
+alert('はじめてのJavaScript！');
+
+JavaScriptから文字を表示させる方法
+JavaScriptで「どこの」「何を」「どう変えたいのか」を記述する。
+document.querySelector('#colorText').textContent = 'カラーコード：';
+document = HTMLページ（どこの）
+querySelector('#colorText') = ID(colorText)の要素（どこの）
+textContent = 要素内のテキスト（何を）
+'カラーコード：'; = 文字列（どう変えたいのか）
+
+DOM(Document Object Model)
+ブラウザーがHTMLを読み込むと、内部ではデータ構造が作成され、その内容に応じてページが描画されていく。このデータ構造をDOMという。
+DOMはJavaScriptでWEBページ上の表示を操作するために存在する。
+
+DOMツリー
+DOMではHTML文書を階層構造で表現する。この階層構造をDOMツリーという。
+
+ノード
+HTMLでタグやエレメントなどの各要素そのもののことで、DOMツリーは枝分かれしているノードで形成されている。
+ノードにはいくつかの種類があり、「要素ノード = <p id="colorText">カラーコードを検索</p> 」「属性ノード = id="colorText" 」「テキストノード = カラーコードを検索 」等に分類される。
