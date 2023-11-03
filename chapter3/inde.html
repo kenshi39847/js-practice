@@ -139,3 +139,23 @@ font-size → fontSize, background-color → backgroundColor
 document.body.style.backgroundColor = color.value;
 body = 要素
 backgroundColor = CSSのプロパティ名
+
+値の内容によって実行するプログラムを変えたいとき条件分岐を使う。
+「if」という構文を使い、「条件に当てはまるならAという処理、当てはまらないならBという処理を行う」とし、この構文をif文という。
+
+if文の基本的な書き方
+「if」の後に「()」、「{}」を書き、「()」の中に条件を入れ、「{}」の中に処理を入れる。
+「{}」で囲った部分をブロックという。ブロックの範囲を分かりやすくするために、インデントで字下げするのが一般的である。
+if (color.value === '#ffffff') {
+  text.textContent = `カラーコード： ${color.value} (white)`;
+}
+また、条件を満たさなかった場合は「else」を使う。
+さらに、他にも条件をつけ足したい場合は「else if」を使う。
+条件処理は上から順に評価されていき、条件1、条件2どちらも当てはまる場合、条件1で書いた処理のみ実行される。
+if (color.value === '#ffffff') {
+  text.textContent = `カラーコード： ${color.value} (white)`;
+} else if (color.value === '#000000') {
+  text.textContent = `カラーコード：${color.value} (black)`;
+} else {
+  text.textContent = `カラーコード：${color.value}`;
+}
