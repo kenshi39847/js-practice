@@ -1,0 +1,52 @@
+JavaScriptにはあらかじめ用意しておいた処理をイベントが発生したタイミングで呼び出す仕組みが備わっている。
+1.処理を登録する
+2.ブラウザーがイベント発生を監視する
+3.イベントの発生を検知する
+4.処理を呼び出す
+
+よく利用されるイベントの種類
+load      | スタイルシートや画像など、全てのリソースの読み込みが完了したとき
+submit    | フォームが送信されるとき
+reset     | フォームがリセットされるとき
+resize    | 画面のサイズが変わったとき
+scroll    | 画面がスクロールされたとき
+copy      | コピーされたとき
+paste     | ペーストされたとき
+keydown   | キーが押されたとき
+keyup     | キーが離されたとき
+click     | クリックされたとき
+dbclick   | ダブルクリックされたとき
+mousedown | マウスのボタンが押されたとき
+mouseup   | マウスのボタンが離れたとき
+mouseover | マウスカーソルが重なったとき
+mouseout  | マウスカーソルが離れたとき
+select    | テキストを選択したとき
+focus     | 要素にフォーカスされたとき
+blur      | 要素のフォーカスがはずれたとき
+input     | 入力されたとき
+change    | 変化があったとき
+
+ローディング中の画面を用意する
+position: fixed;（画面いっぱいに広げる）
+inset: 0;（上下左右の幅を0にする）
+
+クラスを加える
+classList.add()メソッドを使う。
+(cssファイル)
+.loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+(jsファイル)
+「要素.classList.add('クラス名');」
+const loading = document.querySelector('#loading');
+window.addEventListener('load', () => {
+  loading.classList.add('loaded');
+});
+
+クラスを削除する
+要素.classList.remove('クラス名');
+
+クラスの追加・削除の複数指定
+要素.classList.add('クラス名', 'クラス名2', 'クラス名3');
+要素.classList.remove('クラス名', 'クラス名2', 'クラス名3');
