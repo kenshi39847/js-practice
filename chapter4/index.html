@@ -50,3 +50,17 @@ window.addEventListener('load', () => {
 クラスの追加・削除の複数指定
 要素.classList.add('クラス名', 'クラス名2', 'クラス名3');
 要素.classList.remove('クラス名', 'クラス名2', 'クラス名3');
+
+要素のクラスをつけたりはずしたりする
+classList.toggle()メソッドを使う。
+(cssファイル)
+.dark-theme {
+  background: #000;
+  color: #ddd;
+}
+(jsファイル)
+「要素.classList.toggle('クラス名');」
+const btn = document.querySelector('#btn');
+btn.addEventListener('click', () => {
+  document.body.classList.toggle('dark-theme');
+});
