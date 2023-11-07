@@ -77,3 +77,40 @@ A < B   | AがB未満か
 A >= B  | AがB以上か
 A <= B  | AがB以下か
 A !== B | AとBが等しくないか
+
+チェックされていたらボタンを有効化する
+if文を使う。
+(cssファイル)
+#btn:disabled {
+  background: #ccc;
+}
+(jsファイル)
+isAgreed.addEventListener('change', () => {
+  if (isAgreed.checked) {
+  <!-- チェックボックスにチェックが入っているなら -->
+    btn.disabled = false;
+    <!-- ボタンの無効化をなしにする -->
+  } else {
+  <!-- そうでない（チェックが入っていない）なら -->
+    btn.disabled = true;
+    <!-- ボタンの無効化をありにする -->
+  }
+});
+
+「isAgreed.checked」が「true」なら、「btn.disabled」は「false」になる
+「isAgreed.checked」が「false」なら、「btn.disabled」は「true」になる
+「!」をつけることで結果を否定（false）する
+(jsファイル)
+isAgreed.addEventListener('change', () => {
+  btn.disabled = !isAgreed.checked;
+});
+
+文字列や真偽値といったデータの種類のことをデータ型という。
+データ型の種類 | 意味                              | 英語表記   |
+文字列        | 文字列を表す                       | String    |
+数値型        | 数値を表す                         | Number    |
+論理型        | true(真)かfalse(偽)のどちらかを表す | Boolean  |
+Undefined型   | 値が割り当てられていない状態を表す  | Undefined |
+Null型        | 値が存在しないことを表す            | Null     |
+オブジェクト型 | 複数のデータを参照する             | Object    |
+
