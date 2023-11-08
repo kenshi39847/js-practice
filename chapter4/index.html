@@ -114,3 +114,50 @@ Undefined型   | 値が割り当てられていない状態を表す  | Undefine
 Null型        | 値が存在しないことを表す            | Null     |
 オブジェクト型 | 複数のデータを参照する             | Object    |
 
+スクロール量を取得する
+1.プログレスバーを作成する
+(cssファイル)
+#bar {
+  background-color: #0bd;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 10px;
+}
+2.スクロール量を取得する
+画面に関することなので「window」オブジェクトを使用する。スクロール量は「scrollY」で取得できる。
+const scrolled = window.scrollY;
+3.ページのサイズを取得する
+スクロール可能なページの高さはページ全体の高さから表示領域の高さを引いた数値になる。
+<!-- ページ全体の高さ -->
+const pageHeight = document.documentElement.scrollHeight;
+<!-- 表示領域の高さ -->
+const viewHeight = document.documentElement.clientHeight;
+4.スクロールされた割合を計算する
+スクロールの進捗度
+= スクロール量 / スクロール可能なページの高さ * 100
+= スクロール量 / (ページ全体の高さ - 表示領域の高さ) * 100
+<!-- スクロールされた割合 -->
+const percentage = scrolled / (pageHeight - viewHeight) * 100;
+5.プログレスバーの幅を設定する
+<!-- ID「bar」の横幅としてスタイルを付与 -->
+document.querySelector('#bar').style.width = `${percentage}%`;
+
+算術演算子
++,-,*,/（足し算、引き算、掛け算、割り算）
+%（割り算の余りを計算）・・・ 10 % 3 = 1
+**（べき乗を計算）・・・ 10 ** 3 = 1000
+
+複数の条件を組み合わせられる論理演算子
+条件1 かつ 条件2
+条件式1 && 条件式2
+const hour = 9;
+if(hour >= 9 && hour < 12){
+  console.log('モーニング会員');
+}
+条件1 または 条件2
+条件式1 || 条件式2
+const hour = 23;
+if(hour === 8 || hour === 23){
+  console.log('早朝・夜間会員');
+}
