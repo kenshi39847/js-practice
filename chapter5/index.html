@@ -1,0 +1,33 @@
+insertAdjacentHTML()を使ってHTMLとして表示させる
+HTMLを挿入したい要素を指定し、()の中には第一引数にHTMLの挿入位置、第二引数に挿入したい内容を指定する。
+要素.insertAdjacentHTML('挿入位置', 挿入内容);
+挿入位置は文字列扱いとなる。挿入位置は4つ指定できる。
+1.beforebegin | 要素の直前に挿入
+2.afterbegin  | 要素内部の最初の子要素の前に挿入
+3.beforeend   | 要素内部の最後の子要素に後に挿入
+4.afterend    | 要素の直後に挿入
+<!-- beforebegin -->
+<div>
+  <!-- afterbegin -->
+  HTMLを挿入
+  <!-- beforeend -->
+</div>
+<!-- afterend -->
+
+Google Fontsについて
+Google社が提供している世界中の多くの言語のフォントを無料で利用できるWebサービス
+1.http://fonts.google.com/
+2.フォント名が分かっている場合はフォント名を検索
+3.使いたいフォントの太さを指定（「Regular 400」等）
+4.画面右側に選択したフォントが表示される。もし、画面右側にリストが出てこない場合はページ右上にある「+」マークをクリックすると表示される。
+5.<link rel" ~> のコードをHTMLのhead内に記述する
+(HTMLファイル)
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
+6.「CSS rules to specify families」に書かれたコードをフォントに適用させたい要素に記述する
+(CSSファイル)
+body {
+  text-align: center;
+  font-family: 'Kiwi Maru', serif;
+}
