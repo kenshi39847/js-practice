@@ -7,14 +7,8 @@ const lists = [
   'fig.jpg',
   'apple.jpg'
 ];
-//console.log(lists[5]);
-
-const content = `<div><img src="images/${lists[0]}" alt=""></div>
-  <div><img src="images/${lists[1]}" alt=""></div>
-  <div><img src="images/${lists[2]}" alt=""></div>
-  <div><img src="images/${lists[3]}" alt=""></div>
-  <div><img src="images/${lists[4]}" alt=""></div>
-  <div><img src="images/${lists[5]}" alt=""></div>
-`;
-//menu.textContent = content;
-menu.insertAdjacentHTML('beforeend', content);
+//console.log(lists.length);
+for(let i = 0; i < lists.length; i++){
+  const content = `<div><img src="images/${lists[i]}" alt=""></div>`;
+  menu.insertAdjacentHTML('beforeend', content);
+}
