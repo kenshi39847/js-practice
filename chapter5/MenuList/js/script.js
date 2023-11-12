@@ -1,4 +1,10 @@
 const menu = document.querySelector('#menu');
+const strawberry = {
+  name: 'イチゴ',
+  img: 'strawberry.jpg',
+  price: 450
+};
+console.log(strawberry);
 const lists = [
   'strawberry.jpg',
   'lime.jpg',
