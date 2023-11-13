@@ -188,3 +188,50 @@ strawberry['name']
 配列の中にあるオブジェクトの値を取得する
 配列[インデックス].キー
 console.log(lists[0].name);
+
+コードをスッキリさせる
+for(let i = 0; i < lists.length; i++){
+  const content = `<div><img src="images/${lists[i].img}" alt=""><h2>${lists[i].name}</h2><p>${lists[i].price}円</p></div>`;
+  menu.insertAdjacentHTML('beforeend', content);
+}
+
+list[i]を何度も記述しているため、取得する値をそれぞれの定数にする。
+for(let i = 0; i < lists.length; i++){
+  const name = lists[i].name;
+  const img = lists[i].img;
+  const price = lists[i].price;
+  const content = `<div><img src="images/${img}" alt=""><h2>${name}</h2><p>${price}円</p></div>`;
+  menu.insertAdjacentHTML('beforeend', content);
+}
+
+分割代入を使い、1度に複数のプロパティの値を定数に代入できる。
+const {キー1, キー2, キー3} = オブジェクト名;
+for(let i = 0; i < lists.length; i++){
+  const {name, img, price} = lists[i];
+  const content = `<div><img src="images/${img}" alt=""><h2>${name}</h2><p>${price}円</p></div>`;
+  menu.insertAdjacentHTML('beforeend', content);
+}
+
+配列とオブジェクトの使い分け
+1.配列は単一の項目が順に並んでいるようなシンプルなデータで使う。
+| 1 | Ken |
+| 2 | Sato |
+| 3 | Suzuki |
+2.オブジェクトは複数の項目がある場合に使う。
+| name | age | birthday   |
+| Ken  | 27  | 1996/09/19 |
+3.表計算の表のように複数の項目が順に並ぶようなデータであれば配列とオブジェクトを組み合わせて利用する。
+| name   | age | birthday   |
+| Ken    | 27  | 1996/09/19 |
+| Sato   | 28  | 1995/11/11 |
+| Suzuki | 25  | 1998/04/02 |
+
+JavaScriptにあらかじめ用意されているブルとインオブジェクトのうち、Mathオブジェクトを使うと、数学的な計算ができるようになる。
+| Math.floor(数値)            | 小数点以下切り捨て       | console.log(Math.floor(9.28)); | 9 
+| Math.ceil(数値)             | 小数点以下切り上げ       | console.log(Math.ceil(9.28));  | 10 
+| Math.round(数値)            | 四捨五入                | console.log(Math.round(9.28));  | 9 
+| Math.random()               | 0以上1未満をランダム    | console.log(Math.random());     | 0.5567012735572743
+| Math.pow(数値A, 数値B)      | AのB乗                  | console.log(Math.pow(9, 2));    | 81
+| Math.max(数値A, 数値B, ~~~) | 最大値                  | console.log(Math.max(9,2,8));   | 9
+| Math.pow(数値A, 数値B, ~~~) | 最小値                  | console.log(Math.min(9,2,8));   | 2
+| Math.trunc(数値)            | 小数点以下切り捨て、整数 | console.log(Math.trunc(9.28));  | 9
