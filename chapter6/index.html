@@ -1,0 +1,32 @@
+getElementByで要素を取得する
+getElementByを使うメリットはquerySelectorに比べて処理が早い。
+特定のidのついた要素を取得：getElementById('ID名') or querySelector('#ID名')
+特定のクラスの付いた要素をすべて取得：getElementByClassName('クラス名') or querySelectorAll('.クラス名')
+特定のタグを使った要素をすべて取得：getElementByTagName('タグ名') or querySelector('タグ名')
+
+Web Animation API(WAAPI)は、他のライブラリーを使わずにアニメーションを実現することができるJavaScriptの仕様である。
+また、開始時の値と終了時の値を指定しておけば、その2点の間の値を自動補完してなめらかな動きで表示することができる。
+この自動補完の動かす内容のことをキーフレームという。
+
+Web Animation APIの基本の書き方
+動かしたい要素にanimate()メソッドを加えて指定する。()の中には第一引数に動かす内容（キーフレーム）、第二引数は再生時間を指定する。
+動かす要素.animate(動かす内容, 再生時間);
+heading.animate(keyframes, 2000);
+
+動かす内容の書き方
+1.()の中に直接キーフレームのオブジェクトを記述する。値は基本的に開始点、終了点の2つの値を指定する。
+動かす要素.animate({
+  キー(プロパティ名): ['開始の値', '終了の値'],
+}, 再生時間);
+2.別途キーフレームのみを定数にまとめて、animate()メソッドにて呼び出す。
+const keyframes = {
+  キー(プロパティ名): ['開始の値', '終了の値'],
+};
+動かす要素.animate(keyframes, 再生時間);
+const keyframes = {
+  opacity: [0, 1],
+};
+heading.animate(keyframes, 2000);
+
+再生時間の書き方
+どのくらい時間をかけて要素を動かすかを数値で指定する。単位はミリ秒。
