@@ -94,3 +94,52 @@ const options = {
  both      | forwardsとbackwardsの両方を適用
 6.アニメーションを繰り返す
 「iterations」を使う。初期値は「1」、無限ループするには「Infinity(1文字目は大文字にする)」を指定する。
+
+くるっと回転する見出しを作る
+「rotate」を使う。
+<!-- X軸で360度回転し、アニメーションが終わると0、すなわち定位置に戻る -->
+rotate: ['x 360deg', 0]
+
+色が変化する見出しを作る
+動かす内容（色）を用意し、「direction: 'alternate'」、「iterations: Infinity」を使う
+<!--動かす内容（色）を用意し、「,」で区切る。動きの詳細は終了地点までくると折り返して開始地点まで戻すために「direction: 'alternate'」を指定する。
+また、ずっとアニメーションを繰り返すために「iterations: Infinity」を指定する。-->
+const keyframes2 = {
+  color: ['#f66', '#fc2', '#0c6', '#0bd']
+};
+const options2 = {
+  duration: 8000,
+  direction: 'alternate',
+  iterations: Infinity,
+};
+
+背景が伸びる見出しを作る
+CSSに「linear-gradient」を使い、JavaScriptに「backgroundPosition」を使う。
+<!--見出しの背景にはCSSの「linear-gradient」を使い、くっきりと境目のある色を指定する。
+また、2色の境目をJavaScriptの「backgroundPosition」の値を動かすことで、見出しの四角形が伸びたように見せる。-->
+（CSSファイル）
+h2 {
+  color: #fff;
+  display: inline-block;
+  background-image: linear-gradient(90deg, #0bd, #0bd 50%, #fff 50%, #fff);
+  background-size: 200% 100%;
+  padding: .5rem 1rem;
+}
+（JavaScriptファイル）
+const keyframes3 = {
+  color: ['transparent', '#fff'],
+  backgroundPosition: ['100% 0', '0 0'],
+};
+
+ふよふよ動く見出しを作る
+「borderRadius」を使う。
+<!--見出しの四隅の角丸を「borderRadius」で指定する。
+楕円の横の半径と縦の半径を「/」で区切り、左上、右上、右下、左下の順で、左上を基準に時計回りで書いていく。-->
+const keyframes4 = {
+  borderRadius: [
+    '20% 50% 50% 70%/50% 50% 70% 50%',
+    '50% 20% 50% 50%/40% 40% 60% 60%',
+    '50% 40% 20% 40%/40% 50% 50% 80%',
+    '50% 50% 50% 20%/40% 40% 60% 60%',
+  ],
+};
