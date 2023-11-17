@@ -143,3 +143,27 @@ const keyframes4 = {
     '50% 50% 50% 20%/40% 40% 60% 60%',
   ],
 };
+
+jQueryはJavaScriptをより簡単に記述できるライブラリーである。自分で書く内容が少なくて済むので、気軽にWEBサイトに機能や動きを実装できる。
+jQueryの使い方1（ファイルをダウンロードする）
+1.WEBサイトの画面右側にある「Download jQuery」ボタンをクリックする。
+2.移動したページの「Download the compressed, production jQuery ○.○○」を右クリックし、「名前を付けてリンク先を保存」からファイルを保存する。
+3.jQuery本体のファイルの下に自作のJavaScriptファイルを読み込ませて利用する。
+<!-- jQueryの読み込み-->
+<script src="js/jquery-○.○.○.min.js"></script>
+<!-- 自作のJavaScriptファイル-->
+<script src="js/script.js"></script>
+jQueryの使い方2（WEB上から読み込む）
+1.WEBサイトの画面右側にある「Download jQuery」ボタンをクリックする。
+2.一番下にある「jQuery CDN」をクリックする。
+3.「jQuery Core ○.○.○」の欄にある「minified」をクリックする
+4.右側のコピーアイコンをクリックする。
+5.jQuery本体のファイルの下に自作のJavaScriptファイルを読み込ませて利用する（インターネットに繋がっていないと動作しないので注意）。
+<!-- jQueryの読み込み-->
+<script src="<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>"></script>
+<!-- 自作のJavaScriptファイル-->
+<script src="js/script.js"></script>
+
+jQueryの書き方
+jQueryを使う場合、要素を取得するときは「$」に続いて、()の中に必要なセレクターを記述する。
+$('.list')
