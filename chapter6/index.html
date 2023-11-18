@@ -167,3 +167,28 @@ jQueryの使い方2（WEB上から読み込む）
 jQueryの書き方
 jQueryを使う場合、要素を取得するときは「$」に続いて、()の中に必要なセレクターを記述する。
 $('.list')
+
+クラスのついた要素をすべて取得する
+
+<!-- document.querySelectorAll('CSSセレクター')-->
+const items = document.querySelectorAll('.img-item');
+複数のHTML要素を取得すると、NodeListという配列形式で返ってくるので、1つ1つの要素を取得するためにfor文を使う。
+for (let i = 0; i < items.length; i++) {
+  const keyframes = {
+    opacity: [0, 1]
+  };
+  const options = {
+    duration: 600,
+    fill: 'forwards',
+  };
+
+  items[i].animate(keyframes, options);
+}
+
+アニメーションの開始時間を遅延させる
+「delay」を使う。ただし、単純に「delay: 300」と記述しても全てが0.3秒遅れて表示されるだけなので、1枚ずつタイミングをずらすには値に「i」をかけると良い。
+const options = {
+  duration: 600,
+  delay: i * 300,
+  fill: 'forwards',
+};
