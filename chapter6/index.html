@@ -192,3 +192,54 @@ const options = {
   delay: i * 300,
   fill: 'forwards',
 };
+
+<!-- 前提 -->
+const items = document.querySelectorAll('.img-item');
+for(let i = 0; i < items.length; i++) {
+  const keyframes = {
+    opacity: [0, 1],
+  };
+  const options = {
+    duration: 600,
+    delay: i * 300,
+    fill: 'forwards',
+  };
+  items[i].animate(keyframes, options);
+}
+
+回転する画像にする
+「rotate」を使う。アニメーション開始時に「'x, 90deg'」と指定することで、横軸に90度回転しながら画像が表示される。
+const keyframes = {
+  opacity: [0, 1],
+  rotate: ['x 90deg', 0],
+};
+
+下から浮き上がる画像にする
+「translate」を使う。translate: ['0 50px', 0];（開始時は、横方向は0,縦方向は50px下に下げる、終了時は、横と縦どちらも0にする）
+const keyframes = {
+  opacity: [0, 1],
+  translate: ['0 50px', 0],
+};
+
+ふわふわと落ちてくるような画像にする
+「rotate」、「scale」を使う。「scale」は拡大率を指定している。
+const keyframes = {
+  opacity: [0, 1],
+  rotate: ['5deg', 0],
+  scale:[1.1, 1],
+};
+
+ぼかしがなくなりくっきりと表示される画像
+「filter」を使う。初期値に「blur(20px)」を指定し、ぼかした状態にし、「blur(0)」にすることでくっきりと表示される。
+filterプロパティには他にも「brightness()」（明度）、「saturate()」（彩度）、「grayscale()」（白黒）がある。
+<!-- CSSファイル -->
+.img-item {
+  filter: blur(20px);
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+<!-- JSファイル -->
+const keyframes = {
+  filter: ['blur(20px)', 'blur(0)'],
+};
