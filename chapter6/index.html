@@ -243,3 +243,33 @@ filterプロパティには他にも「brightness()」（明度）、「saturate
 const keyframes = {
   filter: ['blur(20px)', 'blur(0)'],
 };
+
+特定の要素が領域内に入ったかどうかを検知するJavaScriptの機能を「Intersection Observer」という。この特定の要素が指定領域内に入った状態のことを「交差している」という。
+「scroll」を使った手法と違って、スクロールするたびに反応するわけではないので、ブラウザーへの負担が少なくなる。
+
+Intersection Observerの基本的な書き方
+1.動作内容を関数で定義する。
+const showKirin = () => {
+  console.log('キリンさんです');
+};
+2.「Intersection Observer」の機能を使うには、「new IntersectionObserver()」と記述する必要がある。
+const showKirin = () => {
+  console.log('キリンさんです');
+};
+const kirinObserver = new IntersectionObserver();
+3.「new IntersectionObserver()」の()の中には1で決めた関数名を入れる。
+const showKirin = () => {
+  console.log('キリンさんです');
+};
+const kirinObserver = new IntersectionObserver(showKirin);
+4.定数に「.」をつなげて「observe()」と記述する。()の中にはイベント発火する対象を入れる。
+const showKirin = () => {
+  console.log('キリンさんです');
+};
+const kirinObserver = new IntersectionObserver(showKirin);
+kirinObserver.observe(document.querySelector('#kirin'));
+
+Intersection Observerでは3つのタイミングで関数が実行される
+1.ブラウザが開かれたとき
+2.対象が画面に入ったとき
+3.対象が画面から外れたとき
