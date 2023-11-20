@@ -1,5 +1,5 @@
-const showKirin = () => {
-  console.log('キリンさんでーす');
+const showKirin = (entries) => {
+  console.log(entries[0].target);
 };
 
 const kirinObserver = new IntersectionObserver(showKirin);

@@ -273,3 +273,19 @@ Intersection Observerでは3つのタイミングで関数が実行される
 1.ブラウザが開かれたとき
 2.対象が画面に入ったとき
 3.対象が画面から外れたとき
+
+<!-- 配列の中にオブジェクトが入っている状態 -->
+const showKirin = (entries) => {
+  console.log(entries[0].target);
+};
+const kirinObserver = new IntersectionObserver(showKirin);
+kirinObserver.observe(document.querySelector('#kirin'));
+
+上記のコンソール上に出力される情報
+boundingClientRect | 監視対象の要素のサイズや位置（top,bottom,left,right,width,height,x,y）
+intersectionRect   | 監視対象の要素が表示されている部分のサイズや位置（top,bottom,left,right,width,height,x,y）
+intersectionRatio  | 監視対象の要素は監視している領域と交差している割合（0~1）
+isIntersecting     | 監視対象が監視している領域に入っているかどうか
+rootBounds         | 監視している領域のサイズや位置（top,bottom,left,right,width,height,x,y）
+target             | 監視対象の要素
+time               | 交差が記録された時刻（ミリ秒）
