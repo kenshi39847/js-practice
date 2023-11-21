@@ -289,3 +289,19 @@ isIntersecting     | 監視対象が監視している領域に入っている�
 rootBounds         | 監視している領域のサイズや位置（top,bottom,left,right,width,height,x,y）
 target             | 監視対象の要素
 time               | 交差が記録された時刻（ミリ秒）
+
+交差判定のオプション
+IntersectionObserverを使って交差判定するときは、基本的に「new IntersectionObserver(実行する関数)」で呼び出す。
+このとき、第一引数に実行する関数、第二引数にオプションを設定できる。
+new IntersectionObserver(実行する関数, オプション)
+
+オプション内容
+root       | ターゲットとなる要素が見えるかどうか判定するためのベース部分を指定
+rootMargin | 交差を検知する「root」からの距離（イベントを発生させる位置を調整）
+threshold  | 関数を実行するタイミング（監視対象が見えている割合）
+const options = {
+  root: document.querySelector('#scrollArea'),
+  rootMargin: '10px',
+  threshold: 0.8
+};
+const observer = new IntersectionObserver(callback, options);
