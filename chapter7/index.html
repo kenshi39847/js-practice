@@ -1,0 +1,127 @@
+ローディング画面を実装できるライブラリー（簡単に実装できるライブラリー）
+1.ProgressBar.js
+読み込まれた割合をラインや円に沿って表示できる。
+2.LoadingBar.js
+円やラインをベースに、SVGでのカスタムシェイプなどに読み込んだ割合を表示できる。
+3.ProgressJs
+画像全体を覆うように読み込んだ割合を表示したり、指定した要素の上にバーを表示できる。
+
+ぼかした画面を徐々にくっきり表示する
+CSSの「backdrop-filter」を使い、背面にくる要素をぼかして表示できる。背景色の透明度は「opacity」を使うと、「backdrop-filter」が効かなくなる。
+その後、背景色に「rgba」を使って、透明から不透明に変化させていく。
+<!-- CSSファイル -->
+#loading {
+  background: rgba(238, 221, 136, 1);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 2rem;
+}
+h1, h2, p {
+  margin-bottom: 1rem;
+}
+h2 {
+  margin-top: 2em;
+}
+<!-- JSファイル -->
+const loadingArea = document.querySelector('#loading');
+const loadingText = document.querySelector('#loading p');
+
+window.addEventListener('load', () => {
+  // ローディング中（ぼかし画面）
+  loadingArea.animate(
+    {
+      backdropFilter: ['blur(10px)', 'blur(0)'],
+      background: ['rgba(238, 221, 136, 1)', 'rgba(238, 221, 136, 0)'],
+      visibility: 'hidden',
+    },
+    {
+      duration: 2000,
+      delay: 1200,
+      easing: 'ease',
+      fill: 'forwards',
+    }
+  );
+  
+  // ローディング中テキスト
+  loadingText.animate(
+    [
+      {
+        opacity: 1,
+        offset: .8  //80%
+      },
+      {
+        opacity: 0,
+        offset: 1  //100%
+      },
+    ], 
+    {
+      duration: 1200,
+      easing: 'ease',
+      fill: 'forwards',
+    }
+  );
+});
+
+中央から開く
+2つの<div>タグを用意して、それぞれの幅を「50vw」にして画面の半分を覆うように配置する。
+アニメーションには「scaleX」で横方向に拡大表示していた<div>タグを戻すことで、中央から扉が開いたような表現になる。
+<!-- HTMLファイル -->
+<body>
+  <div id="loading-left"></div>
+  <div id="loading-right"></div>
+</body>
+<!-- CSSファイル -->
+#loading-left,
+#loading-right {
+    background: #ed8;
+    position: fixed;
+    width: 50vw;
+    height: 100vh;
+}
+#loading-left {
+    left: 0;
+    transform-origin: left top;
+}
+#loading-right {
+    right: 0;
+    transform-origin: right top;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 2rem;
+}
+h1, h2, p {
+    margin-bottom: 1rem;
+}
+h2 {
+    margin-top: 2em;
+}
+<!-- JSファイル -->
+const loadingAreaLeft = document.querySelector('#loading-left');
+const loadingAreaRight = document.querySelector('#loading-right');
+const keyframes = {
+  transform: ['scaleX(1)', 'scaleX(0)'],
+};
+const options = {
+  duration: 1000,
+  easing: 'ease',
+  fill: 'forwards',
+};
+
+window.addEventListener('load', () => {
+  // ローディング中（左側）
+  loadingAreaLeft.animate(keyframes, options);
+  
+  // ローディング中（左側）
+  loadingAreaRight.animate(keyframes, options);
+});
