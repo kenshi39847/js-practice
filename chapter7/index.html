@@ -194,3 +194,90 @@ images.forEach((image)=>{
 配列名.forEach((各配列の要素, インデックス) => {
   実行する内容
 });
+
+モーダルウィンドウの作り方
+ボタンをクリックしたら画面が少し暗くなって、パネルが画面上に表示させる機能をモーダルウィンドウという。
+<!-- HTMLファイル -->
+<body>
+  <button id="open">詳細を見る</button>
+
+  <section id="modal">
+      <h1>経歴</h1>
+      <p>カナダ・バンクーバーにあるWeb制作の学校を卒業。カナダやオーストラリア、イギリスの企業でWebデザイナーとして働きました。</p>
+      <button id="close">閉じる</button>
+  </section>
+  
+  <div id="mask"></div>
+</body>
+<!-- CSSファイル -->
+body {
+  text-align: center;
+  padding: 1rem;
+}
+h1,
+p {
+  margin-bottom: 2rem;
+}
+#open,
+#close {
+  background: #ed8;
+  border: 3px solid #eb8;
+  border-radius: .5rem;
+  padding: 1rem 2rem;
+  cursor: pointer;
+}
+#mask {
+  background: rgba(0, 0, 0, .6);
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  opacity: 0;
+  visibility: hidden;
+}
+#modal {
+  background: #fff;
+  max-width: 36rem;
+  padding: 2rem;
+  border-radius: .5rem;
+  position: absolute;
+  inset: 10rem 0 auto;
+  margin: auto;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+}
+<!-- JSファイル -->
+const open = document.querySelector('#open');
+const close = document.querySelector('#close');
+const modal = document.querySelector('#modal');
+const mask = document.querySelector('#mask');
+const showKeyframes = {
+  opacity: [0, 1],
+  visibility: 'visible',
+};
+const hideKeyframes = {
+  opacity: [1, 0],
+  visibility: 'hidden',
+};
+const options = {
+  duration: 800,
+  easing: 'ease',
+  fill: 'forwards',
+};
+
+// モーダルウィンドウを開く
+open.addEventListener('click', () => {
+  modal.animate(showKeyframes, options);
+  mask.animate(showKeyframes, options);
+});
+
+// モーダルウィンドウを閉じる
+close.addEventListener('click', () => {
+  modal.animate(hideKeyframes, options);
+  mask.animate(hideKeyframes, options);
+});
+
+// マスクをクリックしてモーダルウィンドウを閉じる
+mask.addEventListener('click', () => {
+  close.click();
+});
