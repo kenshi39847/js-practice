@@ -125,3 +125,29 @@ window.addEventListener('load', () => {
   // ローディング中（左側）
   loadingAreaRight.animate(keyframes, options);
 });
+
+
+addEventListener()メソッドを使う場合、引数として発生したイベントに関する情報が含まれるオブジェクトが自動的に渡される。
+これをイベントオブジェクトといい、習慣的に「event」や「e」という名前が使われる。なお、どんな名前を付けても問題はない。
+thumbImages[i].addEventListener('mouseover', (e) => {
+  mainImage.src = e.target.src;
+  mainImage.animate({opacity: [0, 1]}, 500);
+});
+
+配列をループさせて中身を取得する方法（forEachメソッド()）
+配列名に「.」をつなげて「配列.forEach();」と書き始める。「()」の中には関数を記述し、この関数の引数として、配列の要素を指定した名前で1つずつ受け取って繰り返し処理を実行する。
+配列名.forEach((各配列の要素) => {
+  実行する内容
+});
+<!-- JSファイル -->
+const animals = ['ねこ','いぬ','とら','うさぎ'];
+animals.forEach((animal) => {
+  console.log(animal);
+});
+<!-- コンソール -->
+ねこ
+いぬ
+とら
+うさぎ
+
+
