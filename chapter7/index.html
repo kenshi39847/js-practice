@@ -150,4 +150,42 @@ animals.forEach((animal) => {
 とら
 うさぎ
 
-
+カーソルをあわせたときの属性値の活用
+1.alt属性のテキストを表示する
+イベントオブジェクトとして取得したalt属性を「textContent」を使って代入する。
+<!-- HTMLファイル -->
+<body>
+  <p class="text">トライアスロン スタンダードディスタンス</p>
+  <div class="gallery">
+      <img src="images/swim.jpg" alt="スイム 1.5km">
+      <img src="images/bike.jpg" alt="バイク 40km">
+      <img src="images/run.jpg" alt="ラン 10km">
+  </div>
+</body>
+<!-- JSファイル -->
+const images = document.querySelectorAll('.gallery img');
+const text = document.querySelector('.text');
+images.forEach((image)=>{
+  image.addEventListener('mouseover', (event) => {
+      text.textContent = event.target.alt;
+      event.target.animate({opacity: [0, 1]}, 500);
+  });
+});
+2.ページの背景画像として表示する
+<!-- HTMLファイル -->
+<body>
+  <div class="gallery">
+      <img src="images/img1.jpg" alt="">
+      <img src="images/img2.jpg" alt="">
+      <img src="images/img3.jpg" alt="">
+  </div>
+</body>
+<!-- JSファイル -->
+const images = document.querySelectorAll('.gallery img');
+const body = document.body;
+images.forEach((image)=>{
+  image.addEventListener('mouseover', (event) => {
+      body.style.backgroundImage = `url(${event.target.src})`;
+      event.target.animate({opacity: [0, 1]}, 500);
+  });
+});
