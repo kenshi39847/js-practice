@@ -292,3 +292,72 @@ forEach文・・・配列の要素の数だけ繰り返すので無限ループ�
 3.コードの記述量の違い
 for文・・・繰り返し条件などを記述する必要がある。
 forEach文・・・効率よく記述できる。
+
+疑似要素にアニメーションの指定をする
+<!-- HTMLファイル -->
+<body>
+  <div class="container">
+      <h1 class="scroll">JavaScriptはプログラミング言語のひとつ</h1>
+      <p>JavaScriptはWebページに機能を追加できるプログラミング言語です。ブラウザーで動く言語として1995年に誕生しました。今やJavaScriptを利用していないWebサイトを見つけるほうが難しいほど普及しています。そう、今本書を手にとっているみなさんも、毎日のようにJavaScriptに触れているのです。</p>
+      <p>Webサイトはコンテンツを表示する文書構造のためのHTML、見た目を変化させるCSS、そしてWebサイトの動作部分を作るJavaScriptで成り立っています。車で例えるなら、車体の骨組みを作るのがHTML、色などの見た目部分がCSS、そしてアクセルやブレーキ、ライトなどの機能的なところがJavaScriptです。</p>
+      <h2 class="scroll">HTMLやCSSだけではできないことを実装する</h2>
+      <p>HTMLやCSSだけでもWebサイトは作成できます。CSSでアニメーションを加えたり、画面幅にあわせて見た目を変更することも可能です。ただ、HTMLやCSSは一度ブラウザーに読み込まれたら、最初に書かれたコードから変化することはありません。</p>
+      <p>しかし、JavaScriptではHTMLやCSSをリアルタイムで書き換えたり、ユーザーの操作にあわせて動きや機能を加えられます。HTMLやCSSだけでは難しい、より高度で豊かな表現を実現できます。</p>
+      <h2 class="scroll">プログラミング初心者にもおすすめ</h2>
+      <p>「プログラミング」と聞くととたんに難しそうに感じてしまいますね。でも大丈夫です！前述のとおり、JavaScriptはWebページを操作するための言語なので、いつも使っているWebブラウザーで動作します。特別な装置や環境も必要ありません。</p>
+      <p>また、JavaScriptは世界的に人気の言語なので、わからないことがあっても検索すればすぐに解決方法が見つかります。JavaScriptの学習サイトや勉強会、コミュニティーも多く、プログラミング初心者でも気軽に始められます。</p>
+  </div>
+</body>
+<!-- CSSファイル -->
+.scroll {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+.scroll::before {
+  background: #ed8;
+  position: absolute;
+  content: '';
+  display: block;
+  inset: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 2rem;
+}
+h1, h2 {
+  margin: 40rem 0 1rem;
+}
+<!-- JSファイル -->
+// 監視対象が範囲内に現れたら実行する動作
+const animateScroll = (entries, obs) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.animate(
+        {
+          translate: [0, '100%',],
+        },
+        {
+          duration: 2000,
+          pseudoElement: '::before',
+          easing: 'ease',
+          fill: 'forwards',
+        }
+      );
+      
+      // 一度実行されたら監視をやめる
+      obs.unobserve(entry.target);
+    }
+  });
+};
+
+// 監視設定
+const scrollObserver = new IntersectionObserver(animateScroll);
+
+// 監視の指示
+const scrollElements = document.querySelectorAll('.scroll');
+scrollElements.forEach((scrollElement) => {
+  scrollObserver.observe(scrollElement);
+});
